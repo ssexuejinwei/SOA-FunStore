@@ -1,0 +1,297 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
+      lang="en" class="">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Personal-center</title>
+
+    <link rel="icon" type="image/x-icon" href="/images//favicon.ico" />
+
+    <link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-114x114-precomposed.png"/>
+
+    <link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-72x72-precomposed.png"/>
+
+    <link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-57x57-precomposed.png"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Arizonia|Crimson+Text:400,400i,600,600i,700,700i|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="/revolution/css/settings.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/revolution/css/layers.css"/>
+    <link rel="stylesheet" type="text/css" href="/revolution/css/navigation.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/libraries/lib.css"/>
+
+    <link rel="stylesheet" type="text/css" href="/css/plugins.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/navigation-menu.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/shortcode.css"/>
+    <link rel="stylesheet" type="text/css" href="/style.css"/>
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .comment {
+            font-size: 25px;
+            color: #FFC321;
+        }
+
+        .comment li {
+            float: left;
+            cursor: pointer;
+        }
+
+        ul {
+            list-style: none;
+        }
+    </style>
+    <script src="/js/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var wjx_none = '☆';
+            var wjx_sel = '★';
+
+            //鼠标放上去当前的li和之前所有的li内容全部变为实心五角星，移开变为空心。
+            $(".comment li").on("mouseenter",function () {
+                $(this).text(wjx_sel).prevAll("li").text(wjx_sel).end().nextAll("li").text(wjx_none);
+            });
+            $(".comment li").on("mouseleave",function () {
+                if($("li.current").length === 0){
+                    $(".current").text(wjx_none);
+                }else {
+                    $("li.current").text(wjx_sel).prevAll("li").text(wjx_sel).end().nextAll("li").text(wjx_none);
+                }
+            });
+            //鼠标点击那个li，当你前li和之前所有的li都变成实心五角星，其他变为空心。
+            $(".comment li").on("click",function () {
+                $(this).attr("class","current").siblings("li").removeAttr("class");
+            })
+        });
+    </script>
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+<div class="main-container">
+
+    <header class="header-section header-section-1 container-fluid no-padding">
+
+        <div class="middel-header">
+
+            <div class="container">
+
+                <div class="col-md-4 col-sm-6 col-xs-12 logo-block">
+                    <a th:href="@{home}" class="navbar-brand">Fun <span>Store</span></a>
+                </div>
+
+                <div class="col-md-5 col-sm-6 col-xs-6 search-block">
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Search You Wants Here . . ." type="text"/>
+                        <span class="input-group-btn">
+								<button class="btn btn-default" type="button"><i class="icon icon-Search"></i></button>
+							</span>
+                    </div>
+                </div>
+
+                <div class="col-md-3 col-sm-6 col-xs-6 menu-icon">
+                    <ul class="cart">
+                        <li><a href="personal.html" title="User"><i class="icon icon-User"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="container-fluid no-padding menu-block">
+
+            <div class="container">
+
+                <nav class="navbar navbar-default ow-navigation">
+                    <div class="navbar-header">
+                        <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a th:href="@{/home}" class="navbar-brand">Fun <span>Store</span></a>
+                    </div>
+                    <div class="navbar-collapse collapse" id="navbar">
+                        <ul class="nav navbar-nav">
+                            <li><a th:href="@{/home}">Home</a></li>
+                            <li><a th:href="@{/shoppingCart}">Cart</a></li>
+                            <li><a href="checkout.html">Checkout</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+
+        <div class="page-banner container-fluid no-padding">
+
+            <div class="container">
+                <div class="banner-content">
+                    <h3><span sec:authentication="name"></span>'s Personal Center</h3>
+                    <p>our vision is to be Earth's most customer centric company</p>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a th:href="@{/home}" title="Home">Home</a></li>
+                    <li class="active">Personal Center</li>
+                </ol>
+            </div>
+        </div>
+
+
+        <div class="section-header">
+            <h3>Order History</h3>
+            <img src="/images/section-seprator.png" alt="section-seprator" />
+        </div>
+
+        <div class="woocommerce-cart container-fluid no-left-padding no-right-padding">
+
+            <div class="container">
+
+                <div class="col-md-12 col-sm-12 col-xs-12 cart-table">
+                    <form>
+                        <table class="table table-bordered table-responsive">
+                            <thead>
+                            <tr>
+                                <th class="product-subtotal">Product Name</th>
+                                <th class="product-remove">Quantity</th>
+                                <th class="product-subtotal">State</th>
+                                <th class="product-subtotal">Rating</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr class="cart_item" th:each="product : ${products.entrySet()}">
+                                <td data-title="Product Name" class="product-name"><a th:text="${product.getKey().name}" th:href="@{'/product/' + ${product.getKey().id}}">Title</a></td>
+                                <td data-title="Quantity" class="product-quantity" th:inline="text">[[${product.getValue()}]]</td>
+                                <td data-title="State" class="product-subtotal">Shipped</td>
+                                <td data-title="Rating" class="product-unit-price">
+                                    <ul class="comment">
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                            <tbody>
+                            <tr class="cart_item" th:each="product : ${products.entrySet()}">
+                                <td data-title="Product Name" class="product-name"><a th:text="${product.getKey().name}" th:href="@{'/product/' + ${product.getKey().id}}">Title</a></td>
+                                <td data-title="Quantity" class="product-quantity" th:inline="text">[[${product.getValue()}]]</td>
+                                <td data-title="State" class="product-subtotal">Unshipped</td>
+                                <td data-title="Rating" class="product-unit-price">
+                                    <ul class="comment">
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                        <li>☆</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+    <footer id="footer-main" class="footer-main footer-main-1 services-section container-fluid">
+
+        <div class="container">
+
+            <aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_about">
+                <a href="index.html" title="Max Shop">Fun <span>Store</span></a>
+                <p>On the most sensational inspirational celbrational Muppetational... This is what we call Show. I have always wanted to have a neighbor just like you.</p>
+                <ul class="social">
+                    <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="#" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                    <li><a href="#" title="Tumblr"><i class="fa fa-tumblr"></i></a></li>
+                    <li><a href="#" title="Vimeo"><i class="fa fa-vimeo"></i></a></li>
+                </ul>
+            </aside>
+
+            <aside class="col-md-2 col-sm-6 col-xs-6 ftr-widget widget_links">
+                <h3 class="widget-title">Popular Links</h3>
+                <ul>
+                    <li><a href="about.html" title="About Us">About Us</a></li>
+                    <li><a href="contact-us.html" title="Contact Us">Contact Us</a></li>
+                </ul>
+            </aside>
+
+            <aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_links widget_account">
+                <h3 class="widget-title">my account</h3>
+                <ul>
+                    <li><a href="#" title="My Order Details">My Order Details</a></li>
+                    <li><a href="#" title="My credit Offers">My credit Offers</a></li>
+                    <li><a href="#" title="My addresses">My addresses</a></li>
+                    <li><a href="#" title="My Personal Details">My Personal Details</a></li>
+                    <li><a href="#" title="My Account Details">My Account Details</a></li>
+                </ul>
+            </aside>
+
+            <aside class="col-md-4 col-sm-6 col-xs-6 ftr-widget widget_gallery">
+                <h3 class="widget-title">collections</h3>
+                <ul>
+                    <li><a href="#" title=""><img src="/images/ftr-latestpost-1.jpg" alt="ftr-latestpost"/></a></li>
+                    <li><a href="#" title=""><img src="/images/ftr-latestpost-2.jpg" alt="ftr-latestpost"/></a></li>
+                    <li><a href="#" title=""><img src="/images/ftr-latestpost-3.jpg" alt="ftr-latestpost"/></a></li>
+                    <li><a href="#" title=""><img src="/images/ftr-latestpost-4.jpg" alt="ftr-latestpost"/></a></li>
+                    <li><a href="#" title=""><img src="/images/ftr-latestpost-5.jpg" alt="ftr-latestpost"/></a></li>
+                    <li><a href="#" title=""><img src="/images/ftr-latestpost-6.jpg" alt="ftr-latestpost"/></a></li>
+                </ul>
+            </aside>
+            <div class="copyright-section">
+                <ul>
+                    <li><a href="#" title="Delivery Information">Delivery Information</a></li>
+                    <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
+                    <li><a href="#" title="Terms Condition">Terms Condition</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+</div>
+
+
+<script src="/js/jquery.min.js"></script>
+
+
+<script src="/libraries/lib.js"></script>
+
+<script src="/libraries/jquery.countdown.min.js"></script>
+
+
+<script type="text/javascript" src="/revolution/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+<script type="text/javascript" src="/revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+
+<script src="/js/functions.js"></script>
+
+</body>
+</html>
+
+

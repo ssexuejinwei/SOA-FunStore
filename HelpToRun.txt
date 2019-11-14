@@ -1,0 +1,9 @@
+首先给电脑配置maven环境和java环境
+然后进入target目录，打开cmd命令窗口 
+执行命令 
+java -jar shopping-cart-0.0.1-SNAPSHOT.jar
+
+成功启动spring-boot项目后，打开浏览器输入网址
+
+localhost:8070/home 
+即可访问项目

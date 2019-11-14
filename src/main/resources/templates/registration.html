@@ -1,0 +1,232 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <meta name="description" content=""/>
+    <meta name="author" content=""/>
+
+    <title>Login</title>
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="/images//favicon.ico"  />
+
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-114x114-precomposed.png"  />
+
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-72x72-precomposed.png" />
+
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-57x57-precomposed.png"  />
+
+    <!-- Library - Google Font Familys -->
+    <link href="https://fonts.googleapis.com/css?family=Arizonia|Crimson+Text:400,400i,600,600i,700,700i|Lato:100,100i,300,300i,400,400i,700,700i,900,900i|Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet"/>
+
+    <link rel="stylesheet" type="text/css" href="/revolution/css/settings.css" />
+
+    <!-- RS5.0 Layers and Navigation Styles -->
+    <link rel="stylesheet" type="text/css" href="/revolution/css/layers.css" />
+    <link rel="stylesheet" type="text/css" href="/revolution/css/navigation.css"  />
+
+    <!-- Library - Bootstrap v3.3.5 -->
+    <link rel="stylesheet" type="text/css" href="/libraries/lib.css"  />
+
+    <!-- Custom - Common CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/plugins.css" />
+    <link rel="stylesheet" type="text/css" href="/css/navigation-menu.css" />
+    <link rel="stylesheet" type="text/css" href="/css/shortcode.css"  />
+    <link rel="stylesheet" type="text/css" href="/style.css"  />
+
+
+    <!-- [if lt IE 9] -->
+    <script src="/js/html5/respond.min.js"  ></script>
+    <!-- [endif] -->
+
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+
+<div class="main-container">
+
+    <header class="header-section header-section-1 container-fluid no-padding">
+        <!-- Middel Header -->
+        <div class="middel-header">
+            <!-- Container -->
+            <div class="container">
+                <!-- Logo Block -->
+                <div class="col-md-4 col-sm-6 col-xs-12 logo-block">
+                    <a th:href="@{home}" class="navbar-brand">Fun <span>Store</span></a>
+                </div><!-- Logo Block /- -->
+            </div><!-- Container /- -->
+        </div><!-- Middel Header /- -->
+
+        <!-- Menu Block -->
+    </header><!-- Header  -->
+    <!--Show this info message only if registered successfully-->
+    <main>
+        <div class="page-banner container-fluid no-padding">
+            <!-- Container -->
+            <div class="container">
+                <div class="banner-content">
+                    <h3>Registration</h3>
+                    <p>our vision is to be Earth's most customer centric company</p>
+                </div>
+                <ol class="breadcrumb">
+                    <li><a th:href="@{home}" title="Home">Home</a></li>
+                    <li class="active">Login</li>
+                </ol>
+            </div><!-- Container /- -->
+        </div><!-- Page Banner  -->
+        <div class="container-fluid no-left-padding no-right-padding woocommerce-checkout">
+            <div class="container">
+                <div class="col-md-12 col-sm-12 col-xs-12 login-block">
+                    <div class="login-check">
+                        <h3>Your Account</h3>
+                        <div class="col-md-7 col-sm-6 col-xs-6 login-form">
+                            <div class="alert alert-info" th:if="${successMessage}" th:utext="${successMessage}"></div>
+                            <div class="row" style="margin-top:20px">
+                                    <form autocomplete="off" action="#" th:action="@{/registration}"
+                                          th:object="${user}" method="post" role="form">
+
+                                        <div class="form-group">
+                                            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+                                                   class="alert alert-danger"></label>
+                                            <input type="text" th:field="*{name}" placeholder="Name"
+                                                   class="form-control input-lg"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+                                                   class="alert alert-danger"></label>
+                                            <input type="text" th:field="*{lastName}" placeholder="Last Name"
+                                                   class="form-control input-lg"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+                                                   class="alert alert-danger"></label>
+                                            <input type="text" th:field="*{email}" placeholder="Email"
+                                                   class="form-control input-lg"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+                                                   class="alert alert-danger"></label>
+                                            <input type="password" th:field="*{password}" placeholder="Password"
+                                                   class="form-control input-lg"/>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label th:if="${#fields.hasErrors('username')}" th:errors="*{username}"
+                                                   class="alert alert-danger"></label>
+                                            <input type="text" th:field="*{username}" placeholder="Username"
+                                                   class="form-control input-lg"/>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-3" style="float: none; margin: 0 auto;">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Submit"/>
+                                            </div>
+                                        </div>
+
+                                    </form>
+
+                            </div>
+                        </div>
+                        <div class="col-md-5 col-sm-6 col-xs-6 check-details">
+                            <div class="check-detail">
+                                <h5>IF YOU ALREADY HAVE AN ACCOUNT</h5>
+                            </div>
+                            <div class="check-detail">
+                                <a th:href="@{login}" title="log in" class="continue">log in</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer id="footer-main" class="footer-main footer-main-1 services-section container-fluid">
+                <!-- Container -->
+                <div class="container">
+                    <!-- Widget About -->
+                    <aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_about">
+                        <a href="index.html" title="Max Shop">Fun <span>Store</span></a>
+                        <p>On the most sensational inspirational celbrational Muppetational... This is what we call Show. I have always wanted to have a neighbor just like you.</p>
+                        <ul class="social">
+                            <li><a href="#" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                            <li><a href="#" title="Tumblr"><i class="fa fa-tumblr"></i></a></li>
+                            <li><a href="#" title="Vimeo"><i class="fa fa-vimeo"></i></a></li>
+                        </ul>
+                    </aside><!-- Widget About /- -->
+                    <!-- Widget Links -->
+                    <aside class="col-md-2 col-sm-6 col-xs-6 ftr-widget widget_links">
+                        <h3 class="widget-title">Popular Links</h3>
+                        <ul>
+                            <li><a href="about.html" title="About Us">About Us</a></li>
+                            <li><a href="contact-us.html" title="Contact Us">Contact Us</a></li>
+                        </ul>
+                    </aside><!-- Widget Links /- -->
+                    <!-- Widget Account -->
+                    <aside class="col-md-3 col-sm-6 col-xs-6 ftr-widget widget_links widget_account">
+                        <h3 class="widget-title">my account</h3>
+                        <ul>
+                            <li><a href="#" title="My Order Details">My Order Details</a></li>
+                            <li><a href="#" title="My credit Offers">My credit Offers</a></li>
+                            <li><a href="#" title="My addresses">My addresses</a></li>
+                            <li><a href="#" title="My Personal Details">My Personal Details</a></li>
+                            <li><a href="#" title="My Account Details">My Account Details</a></li>
+                        </ul>
+                    </aside><!-- Widget Account /- -->
+                    <!-- Widget Gallery -->
+                    <aside class="col-md-4 col-sm-6 col-xs-6 ftr-widget widget_gallery">
+                        <h3 class="widget-title">collections</h3>
+                        <ul>
+                            <li><a href="#" title=""><img src="/images/ftr-latestpost-1.jpg" alt="ftr-latestpost" /></a></li>
+                            <li><a href="#" title=""><img src="/images/ftr-latestpost-2.jpg" alt="ftr-latestpost" /></a></li>
+                            <li><a href="#" title=""><img src="/images/ftr-latestpost-3.jpg" alt="ftr-latestpost"  /></a></li>
+                            <li><a href="#" title=""><img src="/images/ftr-latestpost-4.jpg" alt="ftr-latestpost"  /></a></li>
+                            <li><a href="#" title=""><img src="/images/ftr-latestpost-5.jpg" alt="ftr-latestpost"  /></a></li>
+                            <li><a href="#" title=""><img src="/images/ftr-latestpost-6.jpg" alt="ftr-latestpost"  /></a></li>
+                        </ul>
+                    </aside><!-- Widget Gallery -->
+                    <div class="copyright-section">
+                        <ul>
+                            <li><a href="#" title="Delivery Information">Delivery Information</a></li>
+                            <li><a href="#" title="Privacy Policy">Privacy Policy</a></li>
+                            <li><a href="#" title="Terms and Condition">Terms and Condition</a></li>
+                        </ul>
+                    </div>
+                </div><!-- Container /- -->
+            </footer><!-- Footer Main 1 -->
+        </div>
+    </main>
+</div>
+
+<!-- JQuery v1.12.4 -->
+<script src="/js/jquery.min.js" ></script>
+
+<!-- Library - Js -->
+<script src="/libraries/lib.js" ></script>
+
+<script src="/libraries/jquery.countdown.min.js" ></script>
+
+<!-- RS5.0 Core JS Files -->
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.video.min.js"  ></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.slideanims.min.js"  ></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.layeranimation.min.js"  ></script>
+<script type="text/javascript" src="/revolution/js/extensions/revolution.extension.navigation.min.js"  ></script>
+
+<!-- Library - Google Map API -->
+<!-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDW40y4kdsjsz714OVTvrw7woVCpD8EbLE"></script> -->
+
+<!-- Library - Theme JS -->
+<script src="/js/functions.js"  ></script>
+
+</body>
+</html>
